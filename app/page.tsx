@@ -78,10 +78,10 @@ const ARTWORKS = [
   {
     id: 6,
     src: "/artworks/artwork-5.png",
-    title: "The Conceptual Study; Echoes of silence",
+    title: "The Portrait Study; Identity",
     description:
-      "A visceral exploration of sensory suppression and the weight of influence. This piece highlights advanced textural contrasts between weathered hands and the vulnerable expression of the subject, creating a haunting, narrative-driven experience.",
-    year: "2025",
+      "A detailed study in grooming and texture. This piece showcases technical mastery in hair rendering, contrasting the sharp lines of a fresh fade with the intricate, layered depth of a full beard.",
+    year: "2024",
   },
   {
     id: 7,
@@ -130,6 +130,14 @@ const ARTWORKS = [
     description:
       "Graphite on Paper.\n An intimate study of expression and focus. This piece highlights the delicate balance of light within the eyes, utilizing fine-line precision to capture the depth and vulnerability of a singular gaze.",
     year: "2026",
+  },
+  {
+    id: 13,
+    src: "/artworks/artwork-9.png",
+    title: "The Conceptual Study; Echoes of Silence",
+    description:
+      "Conceptual Charcoal & Graphite\n A visceral exploration of sensory suppression and the weight of influence. This piece highlights advanced textural contrasts between weathered hands and the vulnerable expression of the subject, creating a haunting, narrative-driven experience.",
+    year: "2025",
   },
 ];
 
