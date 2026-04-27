@@ -1,0 +1,237 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ─── CSS VARIABLES ───────────────────────────────── */
+
+:root {
+  /* Dark mode (default) */
+  --bg: #0A0F1E;
+  --bg2: #0d1428;
+  --surface: rgba(255, 255, 255, 0.05);
+  --card: rgba(255, 255, 255, 0.05);
+  --border: rgba(255, 255, 255, 0.08);
+  --border-bright: rgba(255, 255, 255, 0.14);
+
+  --accent: #00F5D4;
+  --accent-light: #33f8dd;
+  --accent-dim: rgba(0, 245, 212, 0.1);
+  --accent-glow: rgba(0, 245, 212, 0.25);
+
+  --text-primary: #E8EAF6;
+  --text-secondary: #9fa8c0;
+  --text-muted: #4a5070;
+
+  --shadow-deep: rgba(0, 0, 0, 0.85);
+  --shadow-card: rgba(0, 245, 212, 0.08);
+
+  --glass-bg: rgba(255, 255, 255, 0.05);
+  --glass-border: rgba(255, 255, 255, 0.12);
+
+  --curtain-dark: #020e14;
+  --curtain-mid: #051e2c;
+  --curtain-light: #082d40;
+  --curtain-bright: #0b3a52;
+}
+
+[data-theme="light"] {
+  --bg: #F8F9FF;
+  --bg2: #eef0fb;
+  --surface: rgba(255, 255, 255, 0.6);
+  --card: rgba(255, 255, 255, 0.6);
+  --border: rgba(79, 70, 229, 0.12);
+  --border-bright: rgba(79, 70, 229, 0.22);
+
+  --accent: #4F46E5;
+  --accent-light: #6d66ec;
+  --accent-dim: rgba(79, 70, 229, 0.1);
+  --accent-glow: rgba(79, 70, 229, 0.22);
+
+  --text-primary: #1A1A2E;
+  --text-secondary: #3d3d5c;
+  --text-muted: #8888aa;
+
+  --shadow-deep: rgba(0, 0, 0, 0.25);
+  --shadow-card: rgba(0, 0, 0, 0.12);
+
+  --glass-bg: rgba(255, 255, 255, 0.6);
+  --glass-border: rgba(255, 255, 255, 0.8);
+
+  --curtain-dark: #100d2e;
+  --curtain-mid: #1c1850;
+  --curtain-light: #282470;
+  --curtain-bright: #332e90;
+}
+
+/* ─── BASE ───────────────────────────────────────── */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text-primary);
+  font-family: var(--font-montserrat), var(--font-cormorant), "Cormorant Garamond", Georgia, serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+::selection {
+  background: var(--accent-dim);
+  color: var(--accent);
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--accent);
+  border-radius: 3px;
+}
+
+/* ─── KEYFRAMES ──────────────────────────────────── */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeOutUp {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-44px) scale(0.9);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes curtainSlideLeft {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-104%);
+  }
+}
+
+@keyframes curtainSlideRight {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(104%);
+  }
+}
+
+@keyframes galleryEntrance {
+  0% {
+    opacity: 0;
+    transform: scale(1.04) translateY(12px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes goldShimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+@keyframes subtleFloat {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes dotPulse {
+  0%, 100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes cardReveal {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes slideReveal {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ─── REDUCED MOTION ─────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ─── SCROLL REVEAL ──────────────────────────────── */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
