@@ -153,7 +153,7 @@ type IntroStep = "text" | "fading" | "button";
 ══════════════════════════════════════════════════════════════ */
 
 export default function GalleryPage() {
-  const [isDark, setIsDark] = useState(true);
+  const [isDark, setIsDark] = useState(false);
   const [phase, setPhase] = useState<Phase>("intro");
   const [introStep, setIntroStep] = useState<IntroStep>("text");
   const [activeIndex, setActiveIndex] = useState(0);
@@ -176,8 +176,8 @@ export default function GalleryPage() {
   useEffect(() => {
     try {
       const saved = localStorage.getItem("theme");
-      if (saved === "light") setIsDark(false);
-      else if (saved === "dark") setIsDark(true);
+      if (saved === "dark") setIsDark(true);
+      else if (saved === "light") setIsDark(false);
     } catch {}
   }, []);
 
@@ -1260,6 +1260,32 @@ export default function GalleryPage() {
           color: var(--accent);
         }
 
+        .scroll-hint {
+          position: relative;
+          z-index: 2;
+          margin-top: 32px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 6px;
+          opacity: 0.85;
+          animation: subtleFloat 2.2s ease-in-out infinite;
+        }
+        
+        .scroll-hint span {
+          font-family: var(--font-montserrat), sans-serif;
+          font-size: 10px;
+          letter-spacing: 0.4em;
+          text-transform: uppercase;
+          color: var(--accent);
+          font-weight: 600;
+        }
+        .scroll-hint i {
+          font-size: 18px;
+          color: var(--accent);
+          filter: drop-shadow(0 0 6px var(--accent-glow));
+        }
+
         @media (max-width: 767px) {
           .lightbox-inner {
             flex-direction: column;
@@ -1327,7 +1353,7 @@ export default function GalleryPage() {
             {introStep === "text" && (
               <div className="welcome-text">
                 <p className="welcome-sub">Welcome to</p>
-                <h1 className="welcome-name">Collins OluwaFemi</h1>
+                <h1 className="welcome-name">Ayinla Oke</h1>
                 <p className="welcome-gallery">Art &nbsp; Gallery</p>
               </div>
             )}
@@ -1335,7 +1361,7 @@ export default function GalleryPage() {
             {introStep === "fading" && (
               <div className="welcome-text fading">
                 <p className="welcome-sub">Welcome to</p>
-                <h1 className="welcome-name">Collins OluwaFemi</h1>
+                <h1 className="welcome-name">Ayinla Oke</h1>
                 <p className="welcome-gallery">Art &nbsp; Gallery</p>
               </div>
             )}
@@ -1451,6 +1477,10 @@ export default function GalleryPage() {
             <p className="nav-counter">
               {activeIndex + 1}&nbsp;/&nbsp;{ARTWORKS.length}&ensp;—&ensp;Tap the dots or side cards to navigate
             </p>
+            <div className="scroll-hint" aria-hidden="true">
+              <span>About the Artist</span>
+              <i className="lni lni-chevron-down" />
+            </div>
           </section>
 
           {/* ── Artist Bio & Contacts ── */}
