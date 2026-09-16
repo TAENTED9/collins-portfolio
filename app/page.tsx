@@ -320,15 +320,15 @@ export default function GalleryPage() {
           display: flex;
           align-items: center;
           justify-content: center;
-          background: #07070a;
+          background: linear-gradient(90deg, #0a2d8b 0%, #0f5ed9 38%, #5ecbff 100%);
         }
 
-        /* Subtle warm glow in center — like a stage spotlight */
+        /* Subtle cool glow in center for the entry look */
         .intro-screen::before {
           content: '';
           position: absolute;
           inset: 0;
-          background: radial-gradient(ellipse 60% 50% at 50% 45%, #1e140a 0%, #07070a 70%);
+          background: radial-gradient(ellipse 60% 50% at 50% 45%, rgba(255,255,255,0.3) 0%, rgba(16, 67, 170, 0.24) 35%, rgba(8, 10, 18, 0.02) 70%);
           z-index: 0;
           pointer-events: none;
         }
@@ -347,13 +347,12 @@ export default function GalleryPage() {
           left: 0;
           background: repeating-linear-gradient(
             to right,
-            var(--curtain-dark)   0px,
-            var(--curtain-mid)    7px,
-            var(--curtain-light)  14px,
-            var(--curtain-bright) 20px,
-            var(--curtain-light)  26px,
-            var(--curtain-mid)    33px,
-            var(--curtain-dark)   40px
+            #000000 0px,
+            #0b0b0b 7px,
+            #141414 14px,
+            #060606 21px,
+            #191919 28px,
+            #000000 35px
           );
           box-shadow:
             inset -12px 0 28px rgba(0,0,0,0.7),
@@ -364,13 +363,12 @@ export default function GalleryPage() {
           right: 0;
           background: repeating-linear-gradient(
             to left,
-            var(--curtain-dark)   0px,
-            var(--curtain-mid)    7px,
-            var(--curtain-light)  14px,
-            var(--curtain-bright) 20px,
-            var(--curtain-light)  26px,
-            var(--curtain-mid)    33px,
-            var(--curtain-dark)   40px
+            #000000 0px,
+            #0b0b0b 7px,
+            #141414 14px,
+            #060606 21px,
+            #191919 28px,
+            #000000 35px
           );
           box-shadow:
             inset 12px 0 28px rgba(0,0,0,0.7),
@@ -471,7 +469,7 @@ export default function GalleryPage() {
           font-size: clamp(11px, 1.6vw, 14px);
           font-weight: 300;
           font-style: normal;
-          color: rgba(0, 245, 212, 0.55);
+          color: rgba(255, 255, 255, 0.72);
           letter-spacing: 0.45em;
           text-transform: uppercase;
         }
@@ -482,7 +480,7 @@ export default function GalleryPage() {
           font-weight: 900;
           line-height: 1.05;
           letter-spacing: 0.02em;
-          background: linear-gradient(135deg, #006b5c 0%, #00c5a8 25%, #00F5D4 45%, #80ffed 55%, #00F5D4 70%, #00c5a8 85%, #006b5c 100%);
+          background: linear-gradient(135deg, #e9f6ff 0%, #d5f0ff 15%, #66d4ff 30%, #0f5ed9 50%, #91e6ff 70%, #e9f6ff 100%);
           background-size: 250% auto;
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
@@ -509,14 +507,14 @@ export default function GalleryPage() {
           font-weight: 600;
           letter-spacing: 0.38em;
           text-transform: uppercase;
-          color: #07070a;
-          background: linear-gradient(135deg, #00c5a8, #00F5D4, #80ffed, #00F5D4, #00c5a8);
+          color: #ffffff;
+          background: linear-gradient(135deg, #0a2d8b 0%, #0f5ed9 38%, #61c7ff 100%);
           background-size: 200% auto;
           border: none;
           padding: 16px 52px;
           cursor: pointer;
           border-radius: 3px;
-          box-shadow: 0 4px 28px rgba(0, 245, 212, 0.35), 0 0 60px rgba(0, 245, 212, 0.1);
+          box-shadow: 0 4px 28px rgba(18, 87, 219, 0.38), 0 0 60px rgba(97, 199, 255, 0.2);
           transition: transform 0.22s ease, box-shadow 0.22s ease;
           position: relative;
           overflow: hidden;
@@ -524,7 +522,7 @@ export default function GalleryPage() {
         }
         .enter-btn:hover {
           transform: scale(1.05) translateY(-2px);
-          box-shadow: 0 8px 36px rgba(0, 245, 212, 0.55), 0 0 90px rgba(0, 245, 212, 0.18);
+          box-shadow: 0 8px 36px rgba(18, 87, 219, 0.52), 0 0 90px rgba(97, 199, 255, 0.25);
         }
         .enter-btn:active {
           transform: scale(0.98);
@@ -545,16 +543,40 @@ export default function GalleryPage() {
           padding: 90px 20px 48px;
           position: relative;
           overflow: hidden;
+          isolation: isolate;
+          background:
+            linear-gradient(
+              180deg,
+              rgba(9, 13, 24, 0.1) 0%,
+              rgba(9, 13, 24, 0.36) 100%
+            );
+          transition: background 0.45s ease;
         }
 
-        /* Deep space background */
         .gallery-stage::before {
           content: '';
           position: absolute;
-          inset: 0;
-          background: radial-gradient(ellipse 80% 60% at 50% 35%, #141b35 0%, var(--bg) 72%);
+          inset: -8%;
+          background:
+            linear-gradient(180deg, rgba(7, 10, 17, 0.08), rgba(7, 10, 17, 0.34)),
+            var(--active-art-bg) center/cover no-repeat;
+          filter: blur(20px) saturate(1.2) brightness(0.9) contrast(1.04);
+          transform: scale(1.12);
+          opacity: 0.98;
           z-index: 0;
           pointer-events: none;
+        }
+
+        [data-theme="light"] .gallery-stage {
+          background: linear-gradient(180deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0.4) 100%);
+        }
+
+        [data-theme="light"] .gallery-stage::before {
+          background:
+            linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.38)),
+            var(--active-art-bg) center/cover no-repeat;
+          filter: blur(18px) saturate(1.14) brightness(0.96) contrast(1.02);
+          opacity: 0.9;
         }
 
         /* Perspective floor grid */
@@ -582,12 +604,9 @@ export default function GalleryPage() {
             rgba(0, 245, 212, 0.03) 60px
           );
           pointer-events: none;
-          z-index: 0;
+          z-index: 1;
         }
 
-        [data-theme="light"] .gallery-stage::before {
-          background: radial-gradient(ellipse 80% 60% at 50% 35%, #dde0f8 0%, var(--bg) 72%);
-        }
         [data-theme="light"] .gallery-stage::after {
           background: repeating-linear-gradient(
             90deg,
@@ -621,7 +640,7 @@ export default function GalleryPage() {
         .coverflow-outer {
           position: relative;
           z-index: 2;
-          width: 100%;
+          width: min(100%, 1220px);
           perspective: 1400px;
           perspective-origin: 50% 50%;
         }
@@ -647,13 +666,13 @@ export default function GalleryPage() {
           width: 248px;
           border-radius: 6px;
           overflow: visible;
-          background: var(--glass-bg);
-          backdrop-filter: blur(12px);
-          -webkit-backdrop-filter: blur(12px);
+          background: linear-gradient(135deg, rgba(255,255,255,0.12), rgba(255,255,255,0.04));
+          backdrop-filter: blur(0px);
+          -webkit-backdrop-filter: blur(0px);
           box-shadow: 0 8px 32px var(--shadow-card);
-          border: 1px solid var(--glass-border);
+          border: 1px solid rgba(255,255,255,0.18);
           position: relative;
-          transition: box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1), transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+          transition: box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1), transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s ease;
         }
 
         .art-image-wrapper {
@@ -696,6 +715,7 @@ export default function GalleryPage() {
           height: 100%;
           object-fit: cover;
           display: block;
+          filter: saturate(1.08) contrast(1.04);
           transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
@@ -818,9 +838,12 @@ export default function GalleryPage() {
 
         /* Card glow when center */
         .card-wrapper-center .art-card {
+          border-color: rgba(255,255,255,0.28);
           box-shadow:
-            0 0 0 1px var(--border-bright),
-            0 8px 32px var(--shadow-card);
+            0 0 0 1px rgba(255,255,255,0.18),
+            inset 0 1px 0 rgba(255,255,255,0.36),
+            inset 0 -18px 30px rgba(255,255,255,0.04),
+            0 12px 36px rgba(12, 18, 26, 0.26);
         }
 
         /* ── NAVIGATION ──────────────────────────────────── */
@@ -831,6 +854,18 @@ export default function GalleryPage() {
           align-items: center;
           gap: 20px;
           margin-top: 44px;
+          padding: 14px 20px;
+          border-radius: 999px;
+          background: linear-gradient(135deg, rgba(255,255,255,0.16), rgba(255,255,255,0.04));
+          border: 1px solid rgba(255,255,255,0.24);
+          box-shadow:
+            inset 0 1px 0 rgba(255,255,255,0.48),
+            inset 0 -16px 24px rgba(255,255,255,0.06),
+            0 18px 42px rgba(8, 13, 24, 0.22),
+            0 0 0 1px rgba(255,255,255,0.08),
+            0 0 24px rgba(255,255,255,0.06);
+          backdrop-filter: blur(22px) saturate(1.6);
+          -webkit-backdrop-filter: blur(22px) saturate(1.6);
         }
 
         .nav-btn {
@@ -840,23 +875,32 @@ export default function GalleryPage() {
           letter-spacing: 0.3em;
           text-transform: uppercase;
           color: var(--accent);
-          background: var(--glass-bg);
-          backdrop-filter: blur(8px);
-          -webkit-backdrop-filter: blur(8px);
-          border: 1px solid var(--border-bright);
+          background: linear-gradient(135deg, rgba(255,255,255,0.18), rgba(255,255,255,0.05));
+          backdrop-filter: blur(18px) saturate(1.7);
+          -webkit-backdrop-filter: blur(18px) saturate(1.7);
+          border: 1px solid rgba(255,255,255,0.24);
+          box-shadow:
+            inset 0 1px 0 rgba(255,255,255,0.42),
+            inset 0 -16px 24px rgba(255,255,255,0.04),
+            0 12px 28px rgba(8, 12, 18, 0.18),
+            0 0 18px rgba(255,255,255,0.05);
           padding: 11px 22px;
           cursor: pointer;
-          border-radius: 4px;
-          transition: background 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease, transform 0.15s ease;
+          border-radius: 999px;
+          transition: background 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease, transform 0.15s ease, filter 0.2s ease;
           display: flex;
           align-items: center;
           gap: 8px;
         }
         .nav-btn:hover:not(:disabled) {
-          background: var(--accent-dim);
-          border-color: var(--accent);
-          box-shadow: 0 0 18px var(--accent-glow);
+          background: linear-gradient(135deg, rgba(255,255,255,0.22), rgba(255,255,255,0.08));
+          border-color: rgba(255,255,255,0.38);
+          box-shadow:
+            inset 0 1px 0 rgba(255,255,255,0.5),
+            0 18px 32px rgba(0, 245, 212, 0.14),
+            0 0 18px rgba(0,245,212,0.16);
           transform: translateY(-1px);
+          filter: saturate(1.3);
         }
         .nav-btn:active:not(:disabled) {
           transform: translateY(0);
@@ -1380,7 +1424,12 @@ export default function GalleryPage() {
         <div className="gallery-page">
 
           {/* ── Gallery Stage ── */}
-          <section className="gallery-stage">
+          <section
+            className="gallery-stage"
+            style={{
+              ["--active-art-bg" as any]: `url("${ARTWORKS[activeIndex].src}")`,
+            }}
+          >
             <p className="gallery-eyebrow">— Art Gallery —</p>
 
             {/* CoverFlow Carousel */}
@@ -1403,7 +1452,7 @@ export default function GalleryPage() {
                         transform: `translateX(${t.x}px) translateZ(${t.z}px) rotateY(${t.ry}deg) scale(${t.scale})`,
                         opacity: t.opacity,
                         zIndex: t.zi,
-                        filter: t.blur > 0 ? `blur(${t.blur}px)` : "none",
+                        filter: "none",
                         cursor: "zoom-in",
                       }}
                       onClick={() => handleCardClick(i)}
